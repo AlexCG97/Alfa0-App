@@ -6,19 +6,62 @@
     android:layout_height="match_parent"
     tools:context="com.example.alex.alfa0.Home">
 
-    <EditText
-        android:id="@+id/editText"
+    <TextView
+        android:id="@+id/TVBenvenuto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Wei"
+        android:text="Benvenuto,"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/TVTesto"
+        app:layout_constraintStart_toStartOf="@+id/TVTesto"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.358" />
+
+    <TextView
+        android:id="@+id/TVTesto"
+        android:layout_width="287dp"
+        android:layout_height="57dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:text="Al momento non ci sono schede, premi il pulsante per aggiornare la situazione"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVBenvenuto" />
+
+    <Button
+        android:id="@+id/BTAggiorna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:text="Aggiorna"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/TVTesto" />
+
+    <TextView
+        android:id="@+id/TVNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/TVBenvenuto"
+        app:layout_constraintTop_toTopOf="@+id/TVBenvenuto" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/TVBenvenuto"
+        app:layout_constraintStart_toStartOf="@+id/TVBenvenuto"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ambu_round" />
 </android.support.constraint.ConstraintLayout>

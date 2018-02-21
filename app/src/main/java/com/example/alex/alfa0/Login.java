@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -22,6 +23,13 @@ import java.util.Map;
 public class Login extends AppCompatActivity {
     Button btLogin;
     EditText Username, Password;
+
+
+    public TextView getUsername() {
+        TextView a = (TextView) Username.getText();
+        return a;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,15 +47,26 @@ public class Login extends AppCompatActivity {
      });
     }
 
+
+
+
+
+
+
     private void Login(){
-        String url = "http://192.168.1.16/gestioneambulanze/login_mobile.php";
+        String url = "http://192.168.1.17/gestioneambulanze/login_mobile.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(response.trim().equals("success")){
-                    Toast.makeText(getApplicationContext(), "Login effettuato correttamente!", Toast.LENGTH_LONG).show();
-                    startActivity((new Intent(Login.this, Home.class)));
+                    //Toast.makeText(getApplicationContext(), "Login effettuato correttamente!", Toast.LENGTH_LONG).show();
+                    //startActivity((new Intent(Login.this, Home.class)));
+                    Intent i = new Intent(Login.this, Home.class);
+                    String strName = Username.getText().toString();
+                    i.putExtra("Username", strName);
+                    Toast.makeText(getApplicationContext(), strName, Toast.LENGTH_LONG).show();
+                    startActivity(i);
                 } else {
                     Toast.makeText(getApplicationContext(), "Errore!", Toast.LENGTH_LONG).show();
 
