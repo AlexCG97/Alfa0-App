@@ -58,11 +58,11 @@ public class Home extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
                     if (response.trim().equals("presente")) {
-                        //Intent i = new Intent(Home.this, schedaIntervento.class);
+                        Intent i = new Intent(Home.this, schedaIntervento.class);
                         String strName = getUsername();
-                        //i.putExtra("Username", strName);
+                        i.putExtra("Username", strName);
                         Toast.makeText(getApplicationContext(), strName, Toast.LENGTH_LONG).show();
-                       // startActivity(i);
+                        startActivity(i);
                         Toast.makeText(getApplication(), "presente", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(getApplicationContext(), "Errore!", Toast.LENGTH_LONG).show();

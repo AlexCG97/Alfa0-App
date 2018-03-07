@@ -5,6 +5,7 @@ package com.example.alex.alfa0;
  */
 
 public class intervento {
+    private String id ="";
     private String nome = " ";
     private String cognome = " ";
     private String via = " ";
@@ -17,7 +18,12 @@ public class intervento {
     private String codice = " ";
     private String operatore = " ";
 
-    public intervento(String nome, String cognome, String via, String numero, String citta, String chiamata, String codice){
+    public intervento(){
+
+    }
+
+    public intervento(String id, String nome, String cognome, String via, String numero, String citta, String chiamata, String codice){
+        this.id = id;
         this.nome = nome;
         this.cognome = cognome;
         this.via = via;
@@ -71,6 +77,10 @@ public class intervento {
         return operatore;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -114,4 +124,9 @@ public class intervento {
     public void setOperatore(String operatore) {
         this.operatore = operatore;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 }
