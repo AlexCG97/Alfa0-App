@@ -51,7 +51,7 @@ public class Home extends AppCompatActivity {
     }
 
     private void controlloSchede() {
-        String url = "http://10.0.0.238/gestioneambulanze/API_controlloSchede.php";
+        String url = "http://192.168.1.10/gestioneambulanze/API_controlloSchede.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -61,9 +61,9 @@ public class Home extends AppCompatActivity {
                         Intent i = new Intent(Home.this, schedaIntervento.class);
                         String strName = getUsername();
                         i.putExtra("Username", strName);
-                        Toast.makeText(getApplicationContext(), strName, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), strName, Toast.LENGTH_LONG).show();
                         startActivity(i);
-                        Toast.makeText(getApplication(), "presente", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplication(), "presente", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(getApplicationContext(), "Errore!", Toast.LENGTH_LONG).show();
 

@@ -21,10 +21,99 @@
 
     <TextView
         android:id="@+id/TVID"
-        android:layout_width="67dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="224dp"
-        android:layout_marginStart="244dp"
+        android:layout_width="64dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="260dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/TVNome"
+        app:layout_constraintTop_toTopOf="@+id/TVNome"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/TVNomeP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="64dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="nome" />
+
+    <TextView
+        android:id="@+id/TVCognome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/TVNomeP"
+        app:layout_constraintTop_toTopOf="@+id/TVNomeP" />
+
+    <TextView
+        android:id="@+id/TVVia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVNomeP" />
+
+    <EditText
+        android:id="@+id/EDData"
+        android:layout_width="79dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="36dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintStart_toEndOf="@+id/TVCognome"
+        app:layout_constraintTop_toTopOf="@+id/TVCognome" />
+
+    <TextView
+        android:id="@+id/TVNumero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/TVVia"
+        app:layout_constraintTop_toTopOf="@+id/TVVia" />
+
+    <TextView
+        android:id="@+id/TVCitta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/TVNumero"
+        app:layout_constraintTop_toTopOf="@+id/TVNumero" />
+
+    <TextView
+        android:id="@+id/TVCap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toEndOf="@+id/TVCitta"
+        app:layout_constraintTop_toTopOf="@+id/TVCitta" />
+
+    <TextView
+        android:id="@+id/TVChiamata"
+        android:layout_width="233dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVVia" />
+
+    <TextView
+        android:id="@+id/TVOperatore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toEndOf="@+id/TVChiamata"
+        app:layout_constraintTop_toTopOf="@+id/TVChiamata" />
+
+    <TextView
+        android:id="@+id/TVCodice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/TVOperatore"
+        app:layout_constraintTop_toTopOf="@+id/TVOperatore" />
 </android.support.constraint.ConstraintLayout>

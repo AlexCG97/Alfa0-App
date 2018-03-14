@@ -2,37 +2,24 @@ package com.example.alex.alfa0;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 
 
 public class schedaIntervento extends AppCompatActivity {
-    TextView TVNome, TVID;
+    TextView TVNome, TVID, TVNomeP, TVCognome, TVVia, TVNumero, TVCitta, TVCap, TVChiamata, TVOperatore, TVCodice;
+    EditText EDData;
 
 
     @Override
@@ -42,7 +29,7 @@ public class schedaIntervento extends AppCompatActivity {
         TVNome = (TextView) findViewById(R.id.TVNome);
         getUsername();
         //JSONObject schedaIntervento = new JSONObject().getJSONObject();
-        String url = "http://10.0.0.238/gestioneambulanze/API_getScheda.php";
+        String url = "http://192.168.1.10/gestioneambulanze/API_getScheda.php";
         getJSON(url);
 
 
@@ -102,9 +89,9 @@ public class schedaIntervento extends AppCompatActivity {
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
                 try {
-                    loadIntoListView(s);
+                    loadIntoTextView(s);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -140,25 +127,40 @@ public class schedaIntervento extends AppCompatActivity {
 
 
 
-    private void loadIntoListView(String json) throws JSONException {
-        //creating a json array from the json string
+    private void loadIntoTextView(String json) throws JSONException {
+        String Nome, Cognome, Via, Numero, Citta, CAP, Chiamata, Operatore, Codice;
         JSONArray jsonArray = new JSONArray(json);
-        //creating a string array for listview
-        String[] schede = new String[jsonArray.length()];
-        intervento[] schedeInterventi = new intervento[jsonArray.length()];
-        //looping through all the elements in json array
+        //String[] schede = new String[jsonArray.length()];
+        //intervento[] schedeInterventi = new intervento[jsonArray.length()];
         for (int i = 0; i < jsonArray.length(); i++) {
-            //getting json object from the json array
             JSONObject obj = jsonArray.getJSONObject(i);
-            //getting the name from the json object and putting it inside string array
-            //schede[i] = obj.getString("name");
-
+            
+            Nome = obj.getString(("Nome"));
+            Cognome = obj.getString("Cognome");
+            Via = obj.getString("Via");
+            Numero = obj.getString("Numero");
+            Citta = obj.getString("Citta");
+            CAP = obj.getString("CAP");
+            Chiamata = obj.getString("Motivo_chiamata");
+            Operatore = obj.getString("Operatore");
+            Codice = obj.getString("Codice");
+            TVNomeP.setText(Nome);
+            TVCognome.setText(Cognome);
+            //manca data di nascita da fixare
+            TVVia.setText(Via);
+            TVNumero.setText(Numero);
+            TVCitta.setText(Citta);
+            TVCap.setText(CAP);
+            TVChiamata.setText(Chiamata);
+            TVOperatore.setText(Operatore);
+            TVCodice.setText(Codice);
             /*schedeInterventi[i].setId(obj.getString("ID_chiamata"));
             schedeInterventi[i].setNome(obj.getString("Nome"));
             schedeInterventi[i].setCognome(obj.getString("Cognome"));
             schedeInterventi[i].setData(obj.getString("Data_di_nascita"));
             schedeInterventi[i].setVia(obj.getString("Via"));
             schedeInterventi[i].setNumero(obj.getString("Numero"));
+            CITTà PURE
             schedeInterventi[i].setCap(obj.getString("CAP"));
             schedeInterventi[i].setChiamata(obj.getString("Motivo_chiamata"));
             schedeInterventi[i].setOperatore(obj.getString("Operatore"));
