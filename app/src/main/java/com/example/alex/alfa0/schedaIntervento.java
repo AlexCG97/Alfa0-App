@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,6 +19,7 @@ import java.net.URL;
 
 
 public class schedaIntervento extends AppCompatActivity {
+    String Nome, Cognome, Via, Numero, Citta, CAP, Chiamata, Operatore, Codice;
     TextView TVNome, TVID, TVNomeP, TVCognome, TVVia, TVNumero, TVCitta, TVCap, TVChiamata, TVOperatore, TVCodice;
     EditText EDData;
 
@@ -26,14 +28,22 @@ public class schedaIntervento extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scheda_intervento);
-        TVNome = (TextView) findViewById(R.id.TVNome);
+        TVNome = findViewById(R.id.TVNome);
+        TVID =  findViewById(R.id.TVID);
+        TVNomeP = findViewById(R.id.TVNomeP);
+        TVCognome = findViewById(R.id.TVCognome);
+        TVVia=findViewById(R.id.TVVia);
+        TVNumero = findViewById(R.id.TVNumero);
+        TVCitta = findViewById(R.id.TVCitta);
+        TVCap = findViewById(R.id.TVCap);
+        TVChiamata = findViewById(R.id.TVChiamata);
+        TVOperatore = findViewById(R.id.TVOperatore);
+        TVCodice = findViewById(R.id.TVCodice);
+        EDData = findViewById(R.id.EDData);
         getUsername();
         //JSONObject schedaIntervento = new JSONObject().getJSONObject();
         String url = "http://192.168.1.10/gestioneambulanze/API_getScheda.php";
         getJSON(url);
-
-
-
     }
 
     private String getUsername() {
@@ -42,41 +52,6 @@ public class schedaIntervento extends AppCompatActivity {
         TVNome.setText(j);
         return j;
     }
-/*
-    private void getScheda(String url){
-
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-
-
-
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getApplicationContext(), "Errore:" + error.toString(), Toast.LENGTH_LONG).show();
-
-                }
-
-            }) {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<>();
-                    params.put("Username", TVNome.getText().toString().trim());
-                    return params;
-                }
-
-
-            };
-            requestQueue.add(stringRequest);
-
-
-
-        }
-*/
 
     private void getJSON(final String urlWebService) {
 
@@ -128,55 +103,25 @@ public class schedaIntervento extends AppCompatActivity {
 
 
     private void loadIntoTextView(String json) throws JSONException {
-        String Nome, Cognome, Via, Numero, Citta, CAP, Chiamata, Operatore, Codice;
+
         JSONArray jsonArray = new JSONArray(json);
         //String[] schede = new String[jsonArray.length()];
         //intervento[] schedeInterventi = new intervento[jsonArray.length()];
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
-            
-            Nome = obj.getString(("Nome"));
-            Cognome = obj.getString("Cognome");
-            Via = obj.getString("Via");
-            Numero = obj.getString("Numero");
-            Citta = obj.getString("Citta");
-            CAP = obj.getString("CAP");
-            Chiamata = obj.getString("Motivo_chiamata");
-            Operatore = obj.getString("Operatore");
-            Codice = obj.getString("Codice");
-            TVNomeP.setText(Nome);
-            TVCognome.setText(Cognome);
-            //manca data di nascita da fixare
-            TVVia.setText(Via);
-            TVNumero.setText(Numero);
-            TVCitta.setText(Citta);
-            TVCap.setText(CAP);
-            TVChiamata.setText(Chiamata);
-            TVOperatore.setText(Operatore);
-            TVCodice.setText(Codice);
-            /*schedeInterventi[i].setId(obj.getString("ID_chiamata"));
-            schedeInterventi[i].setNome(obj.getString("Nome"));
-            schedeInterventi[i].setCognome(obj.getString("Cognome"));
-            schedeInterventi[i].setData(obj.getString("Data_di_nascita"));
-            schedeInterventi[i].setVia(obj.getString("Via"));
-            schedeInterventi[i].setNumero(obj.getString("Numero"));
-            CITTà PURE
-            schedeInterventi[i].setCap(obj.getString("CAP"));
-            schedeInterventi[i].setChiamata(obj.getString("Motivo_chiamata"));
-            schedeInterventi[i].setOperatore(obj.getString("Operatore"));
-            schedeInterventi[i].setCodice(obj.getString("codice"));
-            schedeInterventi[i].setAttivo(obj.getString("Attivo"));
-            Toast.makeText(this, schedeInterventi[i].toString(), Toast.LENGTH_SHORT).show();*/
-
+            Toast.makeText(this, obj.getString("Nome"), Toast.LENGTH_SHORT).show();
+            TVNomeP.setText(obj.getString("Nome"));
+            TVCognome.setText(obj.getString("Cognome"));
+            TVVia.setText(obj.getString("Via"));
+            TVNumero.setText(obj.getString("Numero"));
+            TVCitta.setText(obj.getString("Citta"));
+            TVCap.setText(obj.getString("CAP"));
+            TVChiamata.setText(obj.getString("Motivo_chiamata"));
+            TVOperatore.setText(obj.getString("Operatore"));
+            TVCodice.setText(obj.getString("codice"));
 
         }
-        //the array adapter to load data into list
-        //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, schede);
-
-        //attaching adapter to listview
-        //listView.setAdapter(arrayAdapter);
     }
-
 }
 
 
