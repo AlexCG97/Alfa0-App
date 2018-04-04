@@ -58,16 +58,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVNomeP" />
 
-    <EditText
-        android:id="@+id/EDData"
-        android:layout_width="79dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="36dp"
-        android:ems="10"
-        android:inputType="date"
-        app:layout_constraintStart_toEndOf="@+id/TVCognome"
-        app:layout_constraintTop_toTopOf="@+id/TVCognome" />
-
     <TextView
         android:id="@+id/TVNumero"
         android:layout_width="wrap_content"
@@ -116,4 +106,13 @@
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/TVOperatore"
         app:layout_constraintTop_toTopOf="@+id/TVOperatore" />
+
+    <TextView
+        android:id="@+id/TVData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/TVCognome"
+        app:layout_constraintTop_toTopOf="@+id/TVNomeP" />
 </android.support.constraint.ConstraintLayout>

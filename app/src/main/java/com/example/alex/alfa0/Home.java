@@ -29,18 +29,14 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         BTAggiorna = (Button) findViewById(R.id.BTAggiorna);
         TVNome = (TextView) findViewById(R.id.TVNome);
         getUsername();
-
         BTAggiorna.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 controlloSchede();
             }
         });
-
-
     }
 
     private String getUsername() {
@@ -51,7 +47,7 @@ public class Home extends AppCompatActivity {
     }
 
     private void controlloSchede() {
-        String url = "http://192.168.1.10/gestioneambulanze/API_controlloSchede.php";
+        String url = "http://192.168.1.21/gestioneambulanze/API_controlloSchede.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -65,8 +61,7 @@ public class Home extends AppCompatActivity {
                         startActivity(i);
                         //Toast.makeText(getApplication(), "presente", Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(getApplicationContext(), "Errore!", Toast.LENGTH_LONG).show();
-
+                        Toast.makeText(getApplicationContext(), "Errore, scheda non presente!", Toast.LENGTH_LONG).show();
                     }
                 }
             }, new Response.ErrorListener() {
@@ -75,7 +70,6 @@ public class Home extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Errore:" + error.toString(), Toast.LENGTH_LONG).show();
 
                 }
-
             }) {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
@@ -83,15 +77,8 @@ public class Home extends AppCompatActivity {
                     params.put("Username", TVNome.getText().toString().trim());
                     return params;
                 }
-
-
             };
         requestQueue.add(stringRequest);
-
-
-
-
-
 
 /*
 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {

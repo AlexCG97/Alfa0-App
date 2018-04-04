@@ -1,10 +1,10 @@
 package com.example.alex.alfa0;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,7 +12,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -20,9 +23,8 @@ import java.net.URL;
 
 public class schedaIntervento extends AppCompatActivity {
     String Nome, Cognome, Via, Numero, Citta, CAP, Chiamata, Operatore, Codice;
-    TextView TVNome, TVID, TVNomeP, TVCognome, TVVia, TVNumero, TVCitta, TVCap, TVChiamata, TVOperatore, TVCodice;
-    EditText EDData;
-
+    TextView TVNome, TVID, TVNomeP, TVCognome, TVVia, TVNumero, TVCitta, TVCap, TVChiamata, TVOperatore, TVCodice, TVData;
+    String Nomee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +41,12 @@ public class schedaIntervento extends AppCompatActivity {
         TVChiamata = findViewById(R.id.TVChiamata);
         TVOperatore = findViewById(R.id.TVOperatore);
         TVCodice = findViewById(R.id.TVCodice);
-        EDData = findViewById(R.id.EDData);
+        TVData = findViewById(R.id.TVData);
         getUsername();
         //JSONObject schedaIntervento = new JSONObject().getJSONObject();
-        String url = "http://192.168.1.10/gestioneambulanze/API_getScheda.php";
+        String url = "http://192.168.1.21/gestioneambulanze/API_getScheda.php";
         getJSON(url);
+        Nomee = getUsername();
     }
 
     private String getUsername() {
@@ -76,8 +79,26 @@ public class schedaIntervento extends AppCompatActivity {
             protected String doInBackground(Void... voids) {
 
                 try {
+
+                    String nomee = getUsername();
                     URL url = new URL(urlWebService);
                     HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                    con.setRequestMethod("POST");
+                    con.setDoInput(true);
+                    con.setDoOutput(true);
+                    Uri.Builder builder = new Uri.Builder()
+                            .appendQueryParameter("Username", Nomee);
+                    String query = builder.build().getEncodedQuery();
+                    OutputStream os = con.getOutputStream();
+                    BufferedWriter writer = new BufferedWriter(
+                            new OutputStreamWriter(os, "UTF-8"));
+                    writer.write(query);
+                    writer.flush();
+                    writer.close();
+                    os.close();
+                    con.connect();
+
+
                     StringBuilder sb = new StringBuilder();
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
                     String json;
@@ -105,11 +126,8 @@ public class schedaIntervento extends AppCompatActivity {
     private void loadIntoTextView(String json) throws JSONException {
 
         JSONArray jsonArray = new JSONArray(json);
-        //String[] schede = new String[jsonArray.length()];
-        //intervento[] schedeInterventi = new intervento[jsonArray.length()];
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
-            Toast.makeText(this, obj.getString("Nome"), Toast.LENGTH_SHORT).show();
             TVNomeP.setText(obj.getString("Nome"));
             TVCognome.setText(obj.getString("Cognome"));
             TVVia.setText(obj.getString("Via"));
@@ -119,7 +137,7 @@ public class schedaIntervento extends AppCompatActivity {
             TVChiamata.setText(obj.getString("Motivo_chiamata"));
             TVOperatore.setText(obj.getString("Operatore"));
             TVCodice.setText(obj.getString("codice"));
-
+            TVData.setText(obj.getString("Data_di_nascita"));
         }
     }
 }
