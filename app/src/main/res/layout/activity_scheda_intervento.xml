@@ -8,28 +8,27 @@
 
     <TextView
         android:id="@+id/TVNome"
-        android:layout_width="64dp"
-        android:layout_height="wrap_content"
+        android:layout_width="104dp"
+        android:layout_height="31dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:textSize="24sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="NomeMacchina" />
 
     <TextView
         android:id="@+id/TVID"
         android:layout_width="64dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="260dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="44dp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/TVNome"
         app:layout_constraintTop_toTopOf="@+id/TVNome"
-        app:layout_constraintVertical_bias="1.0" />
+        tools:text="IDMacchina" />
 
     <TextView
         android:id="@+id/TVNomeP"
@@ -47,7 +46,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/TVNomeP"
-        app:layout_constraintTop_toTopOf="@+id/TVNomeP" />
+        app:layout_constraintTop_toTopOf="@+id/TVNomeP"
+        tools:text="cognome" />
 
     <TextView
         android:id="@+id/TVVia"
@@ -56,7 +56,8 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVNomeP" />
+        app:layout_constraintTop_toBottomOf="@+id/TVNomeP"
+        tools:text="via" />
 
     <TextView
         android:id="@+id/TVNumero"
@@ -64,7 +65,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/TVVia"
-        app:layout_constraintTop_toTopOf="@+id/TVVia" />
+        app:layout_constraintTop_toTopOf="@+id/TVVia"
+        tools:text="numero" />
 
     <TextView
         android:id="@+id/TVCitta"
@@ -72,7 +74,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/TVNumero"
-        app:layout_constraintTop_toTopOf="@+id/TVNumero" />
+        app:layout_constraintTop_toTopOf="@+id/TVNumero"
+        tools:text="citta" />
 
     <TextView
         android:id="@+id/TVCap"
@@ -80,7 +83,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         app:layout_constraintStart_toEndOf="@+id/TVCitta"
-        app:layout_constraintTop_toTopOf="@+id/TVCitta" />
+        app:layout_constraintTop_toTopOf="@+id/TVCitta"
+        tools:text="CAP" />
 
     <TextView
         android:id="@+id/TVChiamata"
@@ -89,7 +93,8 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVVia" />
+        app:layout_constraintTop_toBottomOf="@+id/TVVia"
+        tools:text="chiamata" />
 
     <TextView
         android:id="@+id/TVOperatore"
@@ -97,7 +102,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         app:layout_constraintStart_toEndOf="@+id/TVChiamata"
-        app:layout_constraintTop_toTopOf="@+id/TVChiamata" />
+        app:layout_constraintTop_toTopOf="@+id/TVChiamata"
+        tools:text="operatore" />
 
     <TextView
         android:id="@+id/TVCodice"
@@ -105,14 +111,48 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/TVOperatore"
-        app:layout_constraintTop_toTopOf="@+id/TVOperatore" />
+        app:layout_constraintTop_toTopOf="@+id/TVOperatore"
+        tools:text="codiceInvio" />
 
     <TextView
         android:id="@+id/TVData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        app:layout_constraintStart_toEndOf="@+id/TVCognome"
+        app:layout_constraintTop_toTopOf="@+id/TVCognome"
+        tools:text="DataNascita" />
+
+    <fragment
+        android:id="@+id/mapView"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="576dp"
+        android:layout_height="82dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginStart="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/TVCognome"
-        app:layout_constraintTop_toTopOf="@+id/TVNomeP" />
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVChiamata"
+        tools:context="com.example.mapwithmarker.MapsMarkerActivity" />
+
+    <TextView
+        android:id="@+id/TVStringa"
+        android:layout_width="150dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVChiamata"
+        tools:text="saa" />
+
+    <!-- <com.google.android.gms.maps.MapView
+         android:id="@+id/mapView"
+         android:layout_width="576dp"
+         android:layout_height="82dp"
+         android:layout_marginEnd="8dp"
+         android:layout_marginStart="8dp"
+         android:layout_marginTop="36dp"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/TVChiamata" />-->
 </android.support.constraint.ConstraintLayout>
