@@ -140,15 +140,6 @@
         app:layout_constraintVertical_bias="1.0"
         tools:context="com.example.mapwithmarker.MapsMarkerActivity" />
 
-    <TextView
-        android:id="@+id/TVStringa"
-        android:layout_width="454dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVChiamata"
-        tools:text="saa" />
-
     <!-- <com.google.android.gms.maps.MapView
          android:id="@+id/mapView"
          android:layout_width="576dp"

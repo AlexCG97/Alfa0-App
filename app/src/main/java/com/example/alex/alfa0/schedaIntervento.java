@@ -7,16 +7,13 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.TextView;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,11 +25,9 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
-import java.util.Locale;
-
 
 public class schedaIntervento extends AppCompatActivity implements OnMapReadyCallback {
-    TextView TVNome, TVID, TVNomeP, TVCognome, TVVia, TVNumero, TVCitta, TVCap, TVChiamata, TVOperatore, TVCodice, TVData, TVStringa;
+    TextView TVNome, TVID, TVNomeP, TVCognome, TVVia, TVNumero, TVCitta, TVCap, TVChiamata, TVOperatore, TVCodice, TVData;
     String Nomee, Indirizzo, url;
     GoogleMap mapView;
     @Override
@@ -51,21 +46,12 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
         TVOperatore = findViewById(R.id.TVOperatore);
         TVCodice = findViewById(R.id.TVCodice);
         TVData = findViewById(R.id.TVData);
-        TVStringa = findViewById(R.id.TVStringa);
         Nomee = getUsername();
         url = "http://192.168.1.21/gestioneambulanze/API_getScheda.php";
 
-        if(TVCitta.getText().toString() != null) {
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.mapView);
             mapFragment.getMapAsync(this);
-        } else {
-            try {
-                wait(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     private String getUsername() {
@@ -87,7 +73,7 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
                 super.onPostExecute(s);
                 try {
                     loadIntoTextView(s);
-                    LatLng myAddressCoordinates = getLocationFromAddress(TVStringa.getText().toString());
+                    LatLng myAddressCoordinates = getLocationFromAddress(Indirizzo);
                     //LatLng myAddressCoordinates = getLocationFromAddress("Piazza Ferretto Mestre");
                     mapView.addMarker(new MarkerOptions().position(myAddressCoordinates).title(Indirizzo));
                     mapView.moveCamera(CameraUpdateFactory.newLatLngZoom(myAddressCoordinates, 20));
@@ -148,12 +134,11 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
             TVCodice.setText(obj.getString("codice"));
             TVData.setText(obj.getString("Data_di_nascita"));
             Indirizzo = "Via " + TVVia.getText().toString() + " " + TVNumero.getText().toString() + " " + TVCitta.getText().toString();
-            TVStringa.setText(Indirizzo);
         }
     }
 
     public LatLng getLocationFromAddress(String strAddress) {
-        /**
+        /*
          * A class for handling geocoding and reverse geocoding.
          * Geocoding is the process of transforming a street address or other description of a location into a (latitude, longitude) coordinate.
          * Reverse geocoding is the process of transforming a (latitude, longitude) coordinate into a (partial) address.
@@ -168,7 +153,7 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
         List<Address> address;
         LatLng p1 = null;
         try {
-            /**
+            /*
              * List<Address> getFromLocationName (String locationName, int maxResults)             *
              * | locationName | String: |           a user-supplied description of a location                      |
              * | maxResults	  |   int:  |max number of results to return. Smaller numbers (1 to 5) are recommended |
