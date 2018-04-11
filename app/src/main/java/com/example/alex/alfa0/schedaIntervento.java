@@ -7,14 +7,16 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,7 +33,7 @@ import java.util.Locale;
 
 public class schedaIntervento extends AppCompatActivity implements OnMapReadyCallback {
     TextView TVNome, TVID, TVNomeP, TVCognome, TVVia, TVNumero, TVCitta, TVCap, TVChiamata, TVOperatore, TVCodice, TVData, TVStringa;
-    String Nomee, Indirizzo;
+    String Nomee, Indirizzo, url;
     GoogleMap mapView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +53,19 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
         TVData = findViewById(R.id.TVData);
         TVStringa = findViewById(R.id.TVStringa);
         Nomee = getUsername();
-        String url = "http://192.168.1.21/gestioneambulanze/API_getScheda.php";
-        getJSON(url);
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.mapView);
-        mapFragment.getMapAsync( this);
+        url = "http://192.168.1.21/gestioneambulanze/API_getScheda.php";
 
-
+        if(TVCitta.getText().toString() != null) {
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.mapView);
+            mapFragment.getMapAsync(this);
+        } else {
+            try {
+                wait(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private String getUsername() {
@@ -67,11 +75,6 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
         return j;
     }
 
-
-    private String getIndirizzo(){
-        return "Via " + TVVia.getText().toString() + TVNumero.getText().toString() + TVCitta.getText().toString() + TVCap.getText().toString();
-    }
-
     private void getJSON(final String urlWebService) {
 
         class GetJSON extends AsyncTask<Void, Void, String> {
@@ -79,13 +82,15 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
             protected void onPreExecute() {
                 super.onPreExecute();
             }
-
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 try {
                     loadIntoTextView(s);
-
+                    LatLng myAddressCoordinates = getLocationFromAddress(TVStringa.getText().toString());
+                    //LatLng myAddressCoordinates = getLocationFromAddress("Piazza Ferretto Mestre");
+                    mapView.addMarker(new MarkerOptions().position(myAddressCoordinates).title(Indirizzo));
+                    mapView.moveCamera(CameraUpdateFactory.newLatLngZoom(myAddressCoordinates, 20));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -128,7 +133,6 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
         getJSON.execute();
     }
 
-
     private void loadIntoTextView(String json) throws JSONException {
         JSONArray jsonArray = new JSONArray(json);
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -143,12 +147,10 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
             TVOperatore.setText(obj.getString("Operatore"));
             TVCodice.setText(obj.getString("codice"));
             TVData.setText(obj.getString("Data_di_nascita"));
-            Indirizzo = "Via " + TVVia.getText().toString() + " " + TVNumero.getText().toString() + " " + TVCitta.getText().toString() + " " + TVCap.getText().toString();
+            Indirizzo = "Via " + TVVia.getText().toString() + " " + TVNumero.getText().toString() + " " + TVCitta.getText().toString();
             TVStringa.setText(Indirizzo);
-            //Toast.makeText(this, TVStringa.getText().toString(), Toast.LENGTH_SHORT).show();
         }
     }
-
 
     public LatLng getLocationFromAddress(String strAddress) {
         /**
@@ -161,12 +163,10 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
          *
          * See more at: https://developer.android.com/reference/android/location/Geocoder.html
          */
-        Geocoder coder = new Geocoder(this, Locale.getDefault());
-
+        Geocoder coder = new Geocoder(this);
         //A list because of getFromLocationName will return a list of address depending on how many result I want
         List<Address> address;
         LatLng p1 = null;
-
         try {
             /**
              * List<Address> getFromLocationName (String locationName, int maxResults)             *
@@ -197,16 +197,8 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        /*LatLng sydney = new LatLng(-33.852, 151.211);
-        googleMap.addMarker(new MarkerOptions().position(sydney)
-                .title("Marker in Sydney"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
-
-        //LatLng myAddressCoordinates = getLocationFromAddress(TVStringa.toString());
-        //Toast.makeText(this, myAddressCoordinates.toString(), Toast.LENGTH_SHORT).show();
-
-        //mapView.addMarker(new MarkerOptions().position(myAddressCoordinates).title(Indirizzo));
-        //mapView.moveCamera(CameraUpdateFactory.newLatLngZoom(myAddressCoordinates, 16));
+        this.mapView = googleMap;
+        getJSON(url);
     }
 }
 
