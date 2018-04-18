@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/partenza"
+        android:title="Partenza"/>
+    <item
+        android:id="@+id/arrivoPosto"
+        android:title="Arrivo sul Posto"/>
+    <item
+        android:id="@+id/rientro"
+        android:title="Rientro in ospedale">
+        <menu >
+            <item
+                android:id="@+id/bianco"
+                android:title="Codice Bianco" />
+            <item
+                android:id="@+id/verde"
+                android:title="Codice Verde" />
+            <item
+                android:id="@+id/giallo"
+                android:title="Codice Giallo" />
+            <item
+                android:id="@+id/rosso"
+                android:title="Codice Rosso" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/arrivoPS"
+        android:title="Arrivo in ospedale"/>
+    <item
+        android:id="@+id/Libero"
+        android:title="Libero operativo"></item>
+</menu>

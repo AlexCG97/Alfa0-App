@@ -1,6 +1,7 @@
 package com.example.alex.alfa0;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
@@ -24,11 +25,14 @@ import java.util.Map;
 public class Home extends AppCompatActivity {
     Button BTAggiorna;
     TextView TVNome;
+    MediaPlayer allarme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        allarme = MediaPlayer.create(getApplicationContext(), R.raw.ring);
+
         BTAggiorna = (Button) findViewById(R.id.BTAggiorna);
         TVNome = (TextView) findViewById(R.id.TVNome);
         getUsername();
@@ -58,6 +62,7 @@ public class Home extends AppCompatActivity {
                         String strName = getUsername();
                         i.putExtra("Username", strName);
                         //Toast.makeText(getApplicationContext(), strName, Toast.LENGTH_LONG).show();
+                        allarme.start();
                         startActivity(i);
                         //Toast.makeText(getApplication(), "presente", Toast.LENGTH_LONG).show();
                     } else {

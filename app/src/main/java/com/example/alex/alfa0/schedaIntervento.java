@@ -7,7 +7,13 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -28,7 +34,8 @@ import java.util.List;
 
 public class schedaIntervento extends AppCompatActivity implements OnMapReadyCallback {
     TextView TVNome, TVID, TVNomeP, TVCognome, TVVia, TVNumero, TVCitta, TVCap, TVChiamata, TVOperatore, TVCodice, TVData;
-    String Nomee, Indirizzo, url;
+    Button ButtonStatus, ButtonChiusura;
+    String Nomee, Indirizzo, urlGetScheda, urlSetStatus;
     GoogleMap mapView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +53,66 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
         TVOperatore = findViewById(R.id.TVOperatore);
         TVCodice = findViewById(R.id.TVCodice);
         TVData = findViewById(R.id.TVData);
+        ButtonStatus = findViewById(R.id.ButtonStatus);
+        ButtonChiusura = findViewById(R.id.ButtonChiusura);
         Nomee = getUsername();
-        url = "http://192.168.1.21/gestioneambulanze/API_getScheda.php";
+        urlGetScheda = "http://192.168.1.21/gestioneambulanze/API_getScheda.php";
+        urlSetStatus = "http://192.168.1.21/gestioneambulanze/API_setStatus.php";
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.mapView);
+        mapFragment.getMapAsync(this);
 
-            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.mapView);
-            mapFragment.getMapAsync(this);
+        ButtonChiusura.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(schedaIntervento.this, "Chiusura missione", Toast.LENGTH_SHORT).show();
+                aggiornaChiamata();
+                Intent i = new Intent(schedaIntervento.this, Home.class);
+                startActivity(i);
+            }
+        });
+
+        ButtonStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(schedaIntervento.this, ButtonStatus);
+                popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        int id = item.getItemId();
+                        switch(id) {
+                            case R.id.partenza:
+                                updateStatus("partenza");
+                                //TODO
+                                return true;
+                            case R.id.arrivoPosto:
+                                //TODO
+                                return true;
+                            case R.id.rientro:
+                                //TODO
+                                return true;
+                            case R.id.bianco:
+                                //TODO
+                                return true;
+                            case R.id.verde:
+                                //TODO
+                                return true;
+                            case R.id.giallo:
+                                //TODO
+                                return true;
+                            case R.id.rosso:
+                                //TODO
+                                return true;
+                            default:
+                                return false;
+                        }
+                        //return true;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
     }
 
     private String getUsername() {
@@ -62,7 +123,6 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
     }
 
     private void getJSON(final String urlWebService) {
-
         class GetJSON extends AsyncTask<Void, Void, String> {
             @Override
             protected void onPreExecute() {
@@ -183,7 +243,35 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.mapView = googleMap;
-        getJSON(url);
+        getJSON(urlGetScheda);
+    }
+
+    public void updateStatus(String status){
+        try {
+            URL url = new URL(urlSetStatus);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("POST");
+            con.setDoInput(true);
+            con.setDoOutput(true);
+            Uri.Builder builder = new Uri.Builder();
+            builder.appendQueryParameter("Status", status);
+            builder.appendQueryParameter("Username", getUsername());
+            String query = builder.build().getEncodedQuery();
+            OutputStream os = con.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(
+                    new OutputStreamWriter(os, "UTF-8"));
+            writer.write(query);
+            writer.flush();
+            writer.close();
+            os.close();
+            con.connect();
+        } catch (Exception e) {
+            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void aggiornaChiamata(){
+        //TODO: Inviare query a db che aggiorna la chiamata.
     }
 }
 
