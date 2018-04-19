@@ -8,12 +8,20 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -30,12 +38,19 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TimeZone;
 
 public class schedaIntervento extends AppCompatActivity implements OnMapReadyCallback {
     TextView TVNome, TVID, TVNomeP, TVCognome, TVVia, TVNumero, TVCitta, TVCap, TVChiamata, TVOperatore, TVCodice, TVData;
     Button ButtonStatus, ButtonChiusura;
-    String Nomee, Indirizzo, urlGetScheda, urlSetStatus;
+    String Nomee, Indirizzo, urlGetScheda, urlSetStatus, DataOraCorrente, Status;
     GoogleMap mapView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,26 +98,49 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
                         int id = item.getItemId();
                         switch(id) {
                             case R.id.partenza:
-                                updateStatus("partenza");
-                                //TODO
+                                getDataOra();
+                                Status = "partenza";
+                                updateStatus();
                                 return true;
                             case R.id.arrivoPosto:
-                                //TODO
+                                getDataOra();
+                                Status = "arrivoPosto";
+                                updateStatus();
                                 return true;
                             case R.id.rientro:
-                                //TODO
+                                getDataOra();
+                                Status = "rientro";
+                                updateStatus();
                                 return true;
                             case R.id.bianco:
-                                //TODO
+                                getDataOra();
+                                Status = "bianco";
+                                updateStatus();
                                 return true;
                             case R.id.verde:
-                                //TODO
+                                getDataOra();
+                                Status = "verde";
+                                updateStatus();
                                 return true;
                             case R.id.giallo:
-                                //TODO
+                                getDataOra();
+                                Status = "giallo";
+                                updateStatus();
                                 return true;
                             case R.id.rosso:
-                                //TODO
+                                getDataOra();
+                                Status = "rosso";
+                                updateStatus();
+                                return true;
+                            case R.id.arrivoPS:
+                                getDataOra();
+                                Status = "arrivoPS";
+                                updateStatus();
+                                return true;
+                            case R.id.Libero:
+                                getDataOra();
+                                Status = "libero";
+                                updateStatus();
                                 return true;
                             default:
                                 return false;
@@ -122,6 +160,13 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
         return j;
     }
 
+    private void getDataOra(){
+        Date Data = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+        format.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+        DataOraCorrente = format.format(Data);
+    }
+
     private void getJSON(final String urlWebService) {
         class GetJSON extends AsyncTask<Void, Void, String> {
             @Override
@@ -134,7 +179,6 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
                 try {
                     loadIntoTextView(s);
                     LatLng myAddressCoordinates = getLocationFromAddress(Indirizzo);
-                    //LatLng myAddressCoordinates = getLocationFromAddress("Piazza Ferretto Mestre");
                     mapView.addMarker(new MarkerOptions().position(myAddressCoordinates).title(Indirizzo));
                     mapView.moveCamera(CameraUpdateFactory.newLatLngZoom(myAddressCoordinates, 20));
                 } catch (JSONException e) {
@@ -183,6 +227,7 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
         JSONArray jsonArray = new JSONArray(json);
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
+            TVID.setText(obj.getString("ID_chiamata"));
             TVNomeP.setText(obj.getString("Nome"));
             TVCognome.setText(obj.getString("Cognome"));
             TVVia.setText(obj.getString("Via"));
@@ -246,28 +291,34 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
         getJSON(urlGetScheda);
     }
 
-    public void updateStatus(String status){
-        try {
-            URL url = new URL(urlSetStatus);
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("POST");
-            con.setDoInput(true);
-            con.setDoOutput(true);
-            Uri.Builder builder = new Uri.Builder();
-            builder.appendQueryParameter("Status", status);
-            builder.appendQueryParameter("Username", getUsername());
-            String query = builder.build().getEncodedQuery();
-            OutputStream os = con.getOutputStream();
-            BufferedWriter writer = new BufferedWriter(
-                    new OutputStreamWriter(os, "UTF-8"));
-            writer.write(query);
-            writer.flush();
-            writer.close();
-            os.close();
-            con.connect();
-        } catch (Exception e) {
-            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
-        }
+    public void updateStatus(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, urlSetStatus, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(response.trim().equals("Success")){
+                    Toast.makeText(schedaIntervento.this, "Successo", Toast.LENGTH_SHORT).show();
+                } else if(response.trim().equals("Error")) {
+                    Toast.makeText(getApplicationContext(), "Erroreee!", Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Errore:" + error.toString(), Toast.LENGTH_LONG).show();
+            }
+
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("ID", TVID.getText().toString().trim());
+                params.put("Status", Status.trim());
+                params.put("Data", DataOraCorrente.trim());
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 
     public void aggiornaChiamata(){

@@ -69,7 +69,6 @@ public class Login extends AppCompatActivity {
                     startActivity(i);
                 } else {
                     Toast.makeText(getApplicationContext(), "Errore!", Toast.LENGTH_LONG).show();
-
                 }
             }
         }, new Response.ErrorListener(){
@@ -78,24 +77,15 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Errore:" + error.toString(), Toast.LENGTH_LONG).show();
 
             }
-
         }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("UserName", Username.getText().toString().trim());
                 params.put("Password", Password.getText().toString().trim());
-
                 return params;
             }
-
-
         };
         requestQueue.add(stringRequest);
-
-
-
-
     }
-
 }

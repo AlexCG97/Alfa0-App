@@ -61,10 +61,8 @@ public class Home extends AppCompatActivity {
                         Intent i = new Intent(Home.this, schedaIntervento.class);
                         String strName = getUsername();
                         i.putExtra("Username", strName);
-                        //Toast.makeText(getApplicationContext(), strName, Toast.LENGTH_LONG).show();
                         allarme.start();
                         startActivity(i);
-                        //Toast.makeText(getApplication(), "presente", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(getApplicationContext(), "Errore, scheda non presente!", Toast.LENGTH_LONG).show();
                     }
