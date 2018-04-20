@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -38,9 +37,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -48,9 +45,9 @@ import java.util.Map;
 import java.util.TimeZone;
 
 public class schedaIntervento extends AppCompatActivity implements OnMapReadyCallback {
-    TextView TVNome, TVID, TVNomeP, TVCognome, TVVia, TVNumero, TVCitta, TVCap, TVChiamata, TVOperatore, TVCodice, TVData;
+    TextView TVNome, TVID, TVNomeP, TVCognome, TVVia, TVNumero, TVCitta, TVCap, TVChiamata, TVOperatore, TVCodice, TVData, TVStatus;
     Button ButtonStatus, ButtonChiusura;
-    String Nomee, Indirizzo, urlGetScheda, urlSetStatus, DataOraCorrente, Status;
+    String Nomee, Indirizzo, urlGetScheda, urlSetStatus, urlChiudiScheda, DataOraCorrente, Status;
     GoogleMap mapView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +65,13 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
         TVOperatore = findViewById(R.id.TVOperatore);
         TVCodice = findViewById(R.id.TVCodice);
         TVData = findViewById(R.id.TVData);
+        TVStatus = findViewById(R.id.TVStatus);
         ButtonStatus = findViewById(R.id.ButtonStatus);
         ButtonChiusura = findViewById(R.id.ButtonChiusura);
         Nomee = getUsername();
         urlGetScheda = "http://192.168.1.21/gestioneambulanze/API_getScheda.php";
         urlSetStatus = "http://192.168.1.21/gestioneambulanze/API_setStatus.php";
+        urlChiudiScheda = "http://192.168.1.21/gestioneambulanze/API_chiudiScheda.php";
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(this);
@@ -81,8 +80,13 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
             @Override
             public void onClick(View v) {
                 Toast.makeText(schedaIntervento.this, "Chiusura missione", Toast.LENGTH_SHORT).show();
-                aggiornaChiamata();
+                Status = "chiusura";
+                TVStatus.setText(Status);
+                Toast.makeText(schedaIntervento.this, TVStatus.getText().toString(), Toast.LENGTH_SHORT).show();
+                updateStatus(urlChiudiScheda);
+                Toast.makeText(schedaIntervento.this, "Scheda chiusa.", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(schedaIntervento.this, Home.class);
+                i.putExtra("Username", getUsername());
                 startActivity(i);
             }
         });
@@ -100,52 +104,60 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
                             case R.id.partenza:
                                 getDataOra();
                                 Status = "partenza";
-                                updateStatus();
+                                TVStatus.setText(Status);
+                                updateStatus(urlSetStatus);
                                 return true;
                             case R.id.arrivoPosto:
                                 getDataOra();
                                 Status = "arrivoPosto";
-                                updateStatus();
+                                TVStatus.setText(Status);
+                                updateStatus(urlSetStatus);
                                 return true;
                             case R.id.rientro:
                                 getDataOra();
                                 Status = "rientro";
-                                updateStatus();
+                                TVStatus.setText(Status);
+                                updateStatus(urlSetStatus);
                                 return true;
                             case R.id.bianco:
                                 getDataOra();
                                 Status = "bianco";
-                                updateStatus();
+                                TVStatus.setText(Status);
+                                updateStatus(urlSetStatus);
                                 return true;
                             case R.id.verde:
                                 getDataOra();
                                 Status = "verde";
-                                updateStatus();
+                                TVStatus.setText(Status);
+                                updateStatus(urlSetStatus);
                                 return true;
                             case R.id.giallo:
                                 getDataOra();
                                 Status = "giallo";
-                                updateStatus();
+                                TVStatus.setText(Status);
+                                updateStatus(urlSetStatus);
                                 return true;
                             case R.id.rosso:
                                 getDataOra();
                                 Status = "rosso";
-                                updateStatus();
+                                TVStatus.setText(Status);
+                                updateStatus(urlSetStatus);
                                 return true;
                             case R.id.arrivoPS:
                                 getDataOra();
                                 Status = "arrivoPS";
-                                updateStatus();
+                                TVStatus.setText(Status);
+                                updateStatus(urlSetStatus);
                                 return true;
                             case R.id.Libero:
                                 getDataOra();
                                 Status = "libero";
-                                updateStatus();
+                                TVStatus.setText(Status);
+                                updateStatus(urlSetStatus);
                                 return true;
                             default:
                                 return false;
                         }
-                        //return true;
                     }
                 });
                 popupMenu.show();
@@ -291,9 +303,9 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
         getJSON(urlGetScheda);
     }
 
-    public void updateStatus(){
+    public void updateStatus(String urlStatus){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, urlSetStatus, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, urlStatus, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(response.trim().equals("Success")){
@@ -313,16 +325,12 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("ID", TVID.getText().toString().trim());
-                params.put("Status", Status.trim());
+                params.put("Status", TVStatus.getText().toString().trim());
                 params.put("Data", DataOraCorrente.trim());
                 return params;
             }
         };
         requestQueue.add(stringRequest);
-    }
-
-    public void aggiornaChiamata(){
-        //TODO: Inviare query a db che aggiorna la chiamata.
     }
 }
 
