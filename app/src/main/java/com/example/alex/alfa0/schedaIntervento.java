@@ -45,7 +45,8 @@ import java.util.Map;
 import java.util.TimeZone;
 
 public class schedaIntervento extends AppCompatActivity implements OnMapReadyCallback {
-    TextView TVNome, TVID, TVNomeP, TVCognome, TVVia, TVNumero, TVCitta, TVCap, TVChiamata, TVOperatore, TVCodice, TVData, TVStatus;
+    TextView TVNome, TVNomeP, TVID, TVCognome, TVVia, TVNumero, TVCitta, TVCap, TVChiamata, TVOperatore, TVCodice, TVData, TVStatus;
+    TextView Nome, Cognome, DataNascita, Via, Numero, Citta, CAP, Descrizione, Operatore, Codice;
     Button ButtonStatus, ButtonChiusura;
     String Nomee, Indirizzo, urlGetScheda, urlSetStatus, urlChiudiScheda, DataOraCorrente, Status;
     GoogleMap mapView;
@@ -54,7 +55,7 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scheda_intervento);
         TVNome = findViewById(R.id.TVNome);
-        TVID =  findViewById(R.id.TVID);
+        TVID = findViewById(R.id.TVID);
         TVNomeP = findViewById(R.id.TVNomeP);
         TVCognome = findViewById(R.id.TVCognome);
         TVVia=findViewById(R.id.TVVia);
@@ -68,10 +69,20 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
         TVStatus = findViewById(R.id.TVStatus);
         ButtonStatus = findViewById(R.id.ButtonStatus);
         ButtonChiusura = findViewById(R.id.ButtonChiusura);
+        Nome = findViewById(R.id.Nome);
+        Cognome = findViewById(R.id.Cognome);
+        DataNascita = findViewById(R.id.DataNascita);
+        Via=findViewById(R.id.Via);
+        Numero = findViewById(R.id.Numero);
+        Citta = findViewById(R.id.Citta);
+        CAP = findViewById(R.id.CAP);
+        Descrizione = findViewById(R.id.Descrizione);
+        Operatore = findViewById(R.id.Operatore);
+        Codice = findViewById(R.id.Codice);
         Nomee = getUsername();
-        urlGetScheda = "http://192.168.1.21/gestioneambulanze/API_getScheda.php";
-        urlSetStatus = "http://192.168.1.21/gestioneambulanze/API_setStatus.php";
-        urlChiudiScheda = "http://192.168.1.21/gestioneambulanze/API_chiudiScheda.php";
+        urlGetScheda = "http://10.0.0.164/gestioneambulanze/API_getScheda.php";
+        urlSetStatus = "http://10.0.0.164/gestioneambulanze/API_setStatus.php";
+        urlChiudiScheda = "http://10.0.0.164/gestioneambulanze/API_chiudiScheda.php";
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(this);

@@ -52,7 +52,7 @@ public class Login extends AppCompatActivity {
 
 
     private void Login(){
-        String url = "http://192.168.1.21/gestioneambulanze/login_mobile.php";
+        String url = "http://10.0.0.164/gestioneambulanze/login_mobile.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -79,7 +79,7 @@ public class Login extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("UserName", Username.getText().toString().trim());
+                params.put("Username", Username.getText().toString().trim());
                 params.put("Password", Password.getText().toString().trim());
                 return params;
             }

@@ -47,7 +47,7 @@ public class Home extends AppCompatActivity {
     }
 
     private void controlloSchede() {
-        String url = "http://192.168.1.21/gestioneambulanze/API_controlloSchede.php";
+        String url = "http://10.0.0.164/gestioneambulanze/API_controlloSchede.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

@@ -21,42 +21,30 @@
         tools:text="NomeMacchina" />
 
     <TextView
-        android:id="@+id/TVID"
-        android:layout_width="64dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="44dp"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/TVNome"
-        app:layout_constraintTop_toTopOf="@+id/TVNome"
-        tools:text="IDMacchina" />
-
-    <TextView
         android:id="@+id/TVNomeP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="64dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toEndOf="@+id/Nome"
+        app:layout_constraintTop_toTopOf="@+id/Nome"
         tools:text="nome" />
 
     <TextView
         android:id="@+id/TVCognome"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="23dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@+id/TVNomeP"
-        app:layout_constraintTop_toTopOf="@+id/TVNomeP"
+        app:layout_constraintStart_toEndOf="@+id/Cognome"
+        app:layout_constraintTop_toTopOf="@+id/Cognome"
         tools:text="cognome" />
 
     <TextView
         android:id="@+id/TVVia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVNomeP"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toEndOf="@+id/Via"
+        app:layout_constraintTop_toTopOf="@+id/Via"
         tools:text="via" />
 
     <TextView
@@ -64,45 +52,45 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@+id/TVVia"
-        app:layout_constraintTop_toTopOf="@+id/TVVia"
+        app:layout_constraintStart_toEndOf="@+id/Numero"
+        app:layout_constraintTop_toTopOf="@+id/Numero"
         tools:text="numero" />
 
     <TextView
         android:id="@+id/TVCitta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@+id/TVNumero"
-        app:layout_constraintTop_toTopOf="@+id/TVNumero"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toEndOf="@+id/Citta"
+        app:layout_constraintTop_toTopOf="@+id/Citta"
         tools:text="citta" />
 
     <TextView
         android:id="@+id/TVCap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        app:layout_constraintStart_toEndOf="@+id/TVCitta"
-        app:layout_constraintTop_toTopOf="@+id/TVCitta"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/CAP"
+        app:layout_constraintTop_toTopOf="@+id/CAP"
         tools:text="CAP" />
 
     <TextView
         android:id="@+id/TVChiamata"
         android:layout_width="233dp"
         android:layout_height="28dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVVia"
+        app:layout_constraintTop_toBottomOf="@+id/Descrizione"
         tools:text="chiamata" />
 
     <TextView
         android:id="@+id/TVOperatore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        app:layout_constraintStart_toEndOf="@+id/TVChiamata"
-        app:layout_constraintTop_toTopOf="@+id/TVChiamata"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/Operatore"
+        app:layout_constraintTop_toTopOf="@+id/Operatore"
         tools:text="operatore" />
 
     <TextView
@@ -110,17 +98,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@+id/TVOperatore"
-        app:layout_constraintTop_toTopOf="@+id/TVOperatore"
+        app:layout_constraintStart_toEndOf="@+id/Codice"
+        app:layout_constraintTop_toTopOf="@+id/Codice"
         tools:text="codiceInvio" />
 
     <TextView
         android:id="@+id/TVData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        app:layout_constraintStart_toEndOf="@+id/TVCognome"
-        app:layout_constraintTop_toTopOf="@+id/TVCognome"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/DataNascita"
+        app:layout_constraintTop_toTopOf="@+id/DataNascita"
         tools:text="DataNascita" />
 
     <fragment
@@ -168,10 +156,113 @@
         android:id="@+id/TVStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="TextView"
+        android:layout_marginStart="40dp"
+        android:text="Base"
         app:layout_constraintStart_toEndOf="@+id/TVCodice"
-        tools:layout_editor_absoluteY="149dp" />
+        app:layout_constraintTop_toTopOf="@+id/TVCodice" />
+
+    <TextView
+        android:id="@+id/Nome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="24dp"
+        android:text="Nome:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVNome" />
+
+    <TextView
+        android:id="@+id/Cognome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Cognome:"
+        app:layout_constraintStart_toEndOf="@+id/TVNomeP"
+        app:layout_constraintTop_toTopOf="@+id/TVNomeP" />
+
+    <TextView
+        android:id="@+id/DataNascita"
+        android:layout_width="138dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="40dp"
+        android:text="Data di Nascita:"
+        app:layout_constraintStart_toEndOf="@+id/TVCognome"
+        app:layout_constraintTop_toTopOf="@+id/TVCognome" />
+
+    <TextView
+        android:id="@+id/Via"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="16dp"
+        android:text="Via: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Nome" />
+
+    <TextView
+        android:id="@+id/Numero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:text="Numero:"
+        app:layout_constraintStart_toEndOf="@+id/TVVia"
+        app:layout_constraintTop_toTopOf="@+id/TVVia" />
+
+    <TextView
+        android:id="@+id/Citta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:text="Città:"
+        app:layout_constraintStart_toEndOf="@+id/TVNumero"
+        app:layout_constraintTop_toTopOf="@+id/TVNumero" />
+
+    <TextView
+        android:id="@+id/CAP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="CAP:"
+        app:layout_constraintStart_toEndOf="@+id/TVCitta"
+        app:layout_constraintTop_toTopOf="@+id/TVCitta" />
+
+    <TextView
+        android:id="@+id/Descrizione"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="12dp"
+        android:text="Descrizione chiamata:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Via" />
+
+    <TextView
+        android:id="@+id/Operatore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Operatore:"
+        app:layout_constraintStart_toEndOf="@+id/TVChiamata"
+        app:layout_constraintTop_toTopOf="@+id/TVChiamata" />
+
+    <TextView
+        android:id="@+id/Codice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="Codice:"
+        app:layout_constraintStart_toEndOf="@+id/TVOperatore"
+        app:layout_constraintTop_toTopOf="@+id/TVOperatore" />
+
+    <TextView
+        android:id="@+id/TVID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:layout_marginTop="16dp"
+        android:text="ID"
+        app:layout_constraintEnd_toStartOf="@+id/TVNome"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- <com.google.android.gms.maps.MapView
          android:id="@+id/mapView"
