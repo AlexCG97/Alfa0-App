@@ -80,9 +80,9 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
         Operatore = findViewById(R.id.Operatore);
         Codice = findViewById(R.id.Codice);
         Nomee = getUsername();
-        urlGetScheda = "http://10.0.0.164/gestioneambulanze/API_getScheda.php";
-        urlSetStatus = "http://10.0.0.164/gestioneambulanze/API_setStatus.php";
-        urlChiudiScheda = "http://10.0.0.164/gestioneambulanze/API_chiudiScheda.php";
+        urlGetScheda = "http://www.alexghiurca.com/alfa0/API_getScheda.php";
+        urlSetStatus = "http://www.alexghiurca.com/alfa0/API_setStatus.php";
+        urlChiudiScheda = "http://www.alexghiurca.com/alfa0/API_chiudiScheda.php";
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(this);
@@ -92,6 +92,7 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
             public void onClick(View v) {
                 Toast.makeText(schedaIntervento.this, "Chiusura missione", Toast.LENGTH_SHORT).show();
                 Status = "chiusura";
+                getDataOra();
                 TVStatus.setText(Status);
                 Toast.makeText(schedaIntervento.this, TVStatus.getText().toString(), Toast.LENGTH_SHORT).show();
                 updateStatus(urlChiudiScheda);

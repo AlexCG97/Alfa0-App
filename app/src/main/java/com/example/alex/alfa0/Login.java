@@ -33,9 +33,9 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        btLogin = (Button) findViewById(R.id.btLogin);
-        Username = (EditText) findViewById(R.id.Username);
-        Password = (EditText) findViewById(R.id.Password);
+        btLogin = findViewById(R.id.btLogin);
+        Username = findViewById(R.id.Username);
+        Password = findViewById(R.id.Password);
 
      btLogin.setOnClickListener(new View.OnClickListener() {
          @Override
@@ -52,14 +52,12 @@ public class Login extends AppCompatActivity {
 
 
     private void Login(){
-        String url = "http://10.0.0.164/gestioneambulanze/login_mobile.php";
+        String url = "http://www.alexghiurca.com/alfa0/login_mobile.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if(response.trim().equals("success")){
-                    //Toast.makeText(getApplicationContext(), "Login effettuato correttamente!", Toast.LENGTH_LONG).show();
-                    //startActivity((new Intent(Login.this, Home.class)));
+                if(response.trim().equals("success")){ //Se le API rispondono con success vuol dire che è presente l'utente e il ogin è corretto.
                     Intent i = new Intent(Login.this, Home.class);
                     String strName = Username.getText().toString();
                     i.putExtra("Username", strName);
@@ -77,13 +75,13 @@ public class Login extends AppCompatActivity {
             }
         }) {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() throws AuthFailureError { //Invio dei dati.
                 Map<String, String> params = new HashMap<>();
                 params.put("Username", Username.getText().toString().trim());
                 params.put("Password", Password.getText().toString().trim());
                 return params;
             }
         };
-        requestQueue.add(stringRequest);
+        requestQueue.add(stringRequest); //Invio la richiesta.
     }
 }

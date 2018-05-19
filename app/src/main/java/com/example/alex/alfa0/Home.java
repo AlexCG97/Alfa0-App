@@ -29,8 +29,8 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         allarme = MediaPlayer.create(getApplicationContext(), R.raw.ring);
 
-        BTAggiorna = (Button) findViewById(R.id.BTAggiorna);
-        TVNome = (TextView) findViewById(R.id.TVNome);
+        BTAggiorna = findViewById(R.id.BTAggiorna);
+        TVNome = findViewById(R.id.TVNome);
         getUsername();
         BTAggiorna.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -47,9 +47,8 @@ public class Home extends AppCompatActivity {
     }
 
     private void controlloSchede() {
-        String url = "http://10.0.0.164/gestioneambulanze/API_controlloSchede.php";
+        String url = "http://www.alexghiurca.com/alfa0/API_controlloSchede.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
@@ -67,7 +66,6 @@ public class Home extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Toast.makeText(getApplicationContext(), "Errore:" + error.toString(), Toast.LENGTH_LONG).show();
-
                 }
             }) {
                 @Override
@@ -78,23 +76,7 @@ public class Home extends AppCompatActivity {
                 }
             };
         requestQueue.add(stringRequest);
-
-/*
-new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(response.trim().equals("success")){
-
-                }else{
-                    //TODO: Se non cè rifà dopo 30 sec
-                }
-            }
-        }, 30000);
-
-
-*/
         }
-
     }
 
 
