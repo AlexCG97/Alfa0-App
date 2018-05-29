@@ -157,6 +157,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:text="Base"
+        android:textColor="@android:color/holo_red_dark"
         app:layout_constraintStart_toEndOf="@+id/TVCodice"
         app:layout_constraintTop_toTopOf="@+id/TVCodice" />
 
@@ -167,6 +168,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="24dp"
         android:text="Nome:"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVNome" />
 
@@ -176,6 +178,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="Cognome:"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/TVNomeP"
         app:layout_constraintTop_toTopOf="@+id/TVNomeP" />
 
@@ -185,6 +188,7 @@
         android:layout_height="22dp"
         android:layout_marginStart="40dp"
         android:text="Data di Nascita:"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/TVCognome"
         app:layout_constraintTop_toTopOf="@+id/TVCognome" />
 
@@ -195,6 +199,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="16dp"
         android:text="Via: "
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Nome" />
 
@@ -204,6 +209,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:text="Numero:"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/TVVia"
         app:layout_constraintTop_toTopOf="@+id/TVVia" />
 
@@ -213,6 +219,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:text="Città:"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/TVNumero"
         app:layout_constraintTop_toTopOf="@+id/TVNumero" />
 
@@ -222,6 +229,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="CAP:"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/TVCitta"
         app:layout_constraintTop_toTopOf="@+id/TVCitta" />
 
@@ -231,6 +239,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="Descrizione chiamata:"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="@+id/Via"
         app:layout_constraintTop_toBottomOf="@+id/Via" />
 
@@ -240,6 +249,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Operatore:"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/TVChiamata"
         app:layout_constraintTop_toTopOf="@+id/TVChiamata" />
 
@@ -249,6 +259,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="Codice:"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/TVOperatore"
         app:layout_constraintTop_toTopOf="@+id/TVOperatore" />
 

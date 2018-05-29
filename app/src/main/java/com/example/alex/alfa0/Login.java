@@ -47,10 +47,6 @@ public class Login extends AppCompatActivity {
 
 
 
-
-
-
-
     private void Login(){
         String url = "http://www.alexghiurca.com/alfa0/login_mobile.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);

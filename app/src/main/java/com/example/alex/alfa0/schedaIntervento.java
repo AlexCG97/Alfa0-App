@@ -80,9 +80,9 @@ public class schedaIntervento extends AppCompatActivity implements OnMapReadyCal
         Operatore = findViewById(R.id.Operatore);
         Codice = findViewById(R.id.Codice);
         Nomee = getUsername();
-        urlGetScheda = "http://www.alexghiurca.com/alfa0/API_getScheda.php";
-        urlSetStatus = "http://www.alexghiurca.com/alfa0/API_setStatus.php";
-        urlChiudiScheda = "http://www.alexghiurca.com/alfa0/API_chiudiScheda.php";
+        urlGetScheda = "http://www.alexghiurca.com/alfa0/API/API_getScheda.php";
+        urlSetStatus = "http://www.alexghiurca.com/alfa0/API/API_setStatus.php";
+        urlChiudiScheda = "http://www.alexghiurca.com/alfa0/API/API_chiudiScheda.php";
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(this);
