@@ -13,8 +13,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="68dp"
+        android:fontFamily="@font/roboto"
         android:text="Benvenuto,"
         android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.613"
         app:layout_constraintStart_toStartOf="@+id/imageView"
@@ -22,11 +24,13 @@
 
     <TextView
         android:id="@+id/TVTesto"
-        android:layout_width="287dp"
-        android:layout_height="57dp"
+        android:layout_width="360dp"
+        android:layout_height="60dp"
         android:layout_marginTop="68dp"
+        android:fontFamily="@font/roboto"
         android:text="Al momento non ci sono schede, premi il pulsante per aggiornare la situazione"
         android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/TVBenvenuto"
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="@+id/TVBenvenuto"
@@ -40,6 +44,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="92dp"
         android:text="Aggiorna"
+        android:fontFamily="@font/roboto"
         app:layout_constraintEnd_toEndOf="@+id/TVTesto"
         app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="@+id/TVTesto"
@@ -47,10 +52,13 @@
 
     <TextView
         android:id="@+id/TVNome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="683dp"
-        tools:layout_editor_absoluteY="318dp" />
+        android:layout_width="106dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="32dp"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/TVBenvenuto"
+        app:layout_constraintTop_toTopOf="@+id/TVBenvenuto" />
 
     <ImageView
         android:id="@+id/imageView"

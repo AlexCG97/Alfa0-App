@@ -13,7 +13,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:textSize="14sp"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +28,8 @@
         android:layout_marginStart="12dp"
         app:layout_constraintStart_toEndOf="@+id/Nome"
         app:layout_constraintTop_toTopOf="@+id/Nome"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         tools:text="nome" />
 
     <TextView
@@ -36,6 +39,8 @@
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/Cognome"
         app:layout_constraintTop_toTopOf="@+id/Cognome"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         tools:text="cognome" />
 
     <TextView
@@ -45,6 +50,8 @@
         android:layout_marginStart="4dp"
         app:layout_constraintStart_toEndOf="@+id/Via"
         app:layout_constraintTop_toTopOf="@+id/Via"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         tools:text="via" />
 
     <TextView
@@ -52,6 +59,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/Numero"
         app:layout_constraintTop_toTopOf="@+id/Numero"
         tools:text="numero" />
@@ -60,6 +69,8 @@
         android:id="@+id/TVCitta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         android:layout_marginStart="12dp"
         app:layout_constraintStart_toEndOf="@+id/Citta"
         app:layout_constraintTop_toTopOf="@+id/Citta"
@@ -70,6 +81,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/CAP"
         app:layout_constraintTop_toTopOf="@+id/CAP"
         tools:text="CAP" />
@@ -78,6 +91,8 @@
         android:id="@+id/TVChiamata"
         android:layout_width="233dp"
         android:layout_height="28dp"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="@+id/Descrizione"
         app:layout_constraintTop_toBottomOf="@+id/Descrizione"
@@ -87,6 +102,8 @@
         android:id="@+id/TVOperatore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toEndOf="@+id/Operatore"
         app:layout_constraintTop_toTopOf="@+id/Operatore"
@@ -96,6 +113,8 @@
         android:id="@+id/TVCodice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/Codice"
         app:layout_constraintTop_toTopOf="@+id/Codice"
@@ -105,6 +124,8 @@
         android:id="@+id/TVData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/DataNascita"
         app:layout_constraintTop_toTopOf="@+id/DataNascita"
@@ -134,7 +155,7 @@
         android:layout_marginBottom="48dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Invia Status"
+        android:text="@string/invia_status"
         app:layout_constraintBottom_toTopOf="@+id/mapView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -145,7 +166,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="100dp"
-        android:text="Chiudi scheda"
+        android:text="@string/chiudi_scheda"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/ButtonStatus"
@@ -156,7 +177,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:text="Base"
+        android:text="@string/base"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         android:textColor="@android:color/holo_red_dark"
         app:layout_constraintStart_toEndOf="@+id/TVCodice"
         app:layout_constraintTop_toTopOf="@+id/TVCodice" />
@@ -167,7 +190,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="24dp"
-        android:text="Nome:"
+        android:text="@string/nome"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVNome" />
@@ -177,8 +202,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:text="Cognome:"
+        android:text="@string/cognome"
         android:textColor="#000000"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/TVNomeP"
         app:layout_constraintTop_toTopOf="@+id/TVNomeP" />
 
@@ -187,8 +214,10 @@
         android:layout_width="138dp"
         android:layout_height="22dp"
         android:layout_marginStart="40dp"
-        android:text="Data di Nascita:"
+        android:text="@string/data_di_nascita"
         android:textColor="#000000"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/TVCognome"
         app:layout_constraintTop_toTopOf="@+id/TVCognome" />
 
@@ -198,7 +227,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="16dp"
-        android:text="Via: "
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
+        android:text="@string/via"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Nome" />
@@ -207,8 +238,10 @@
         android:id="@+id/Numero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         android:layout_marginStart="36dp"
-        android:text="Numero:"
+        android:text="@string/numero"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/TVVia"
         app:layout_constraintTop_toTopOf="@+id/TVVia" />
@@ -218,7 +251,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:text="Città:"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
+        android:text="@string/citt"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/TVNumero"
         app:layout_constraintTop_toTopOf="@+id/TVNumero" />
@@ -227,8 +262,10 @@
         android:id="@+id/CAP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         android:layout_marginStart="24dp"
-        android:text="CAP:"
+        android:text="@string/cap"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/TVCitta"
         app:layout_constraintTop_toTopOf="@+id/TVCitta" />
@@ -236,19 +273,23 @@
     <TextView
         android:id="@+id/Descrizione"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Descrizione chiamata:"
+        android:text="@string/descrizione_chiamata"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="@+id/Via"
         app:layout_constraintTop_toBottomOf="@+id/Via" />
 
     <TextView
         android:id="@+id/Operatore"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Operatore:"
+        android:text="@string/operatore"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/TVChiamata"
         app:layout_constraintTop_toTopOf="@+id/TVChiamata" />
@@ -258,8 +299,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="Codice:"
+        android:fontFamily="@font/roboto"
+        android:text="@string/codice"
         android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/TVOperatore"
         app:layout_constraintTop_toTopOf="@+id/TVOperatore" />
 
@@ -269,7 +312,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="48dp"
         android:layout_marginTop="16dp"
-        android:text="ID"
+        android:fontFamily="@font/roboto"
+        android:text="@string/id"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/TVNome"
         app:layout_constraintTop_toTopOf="parent" />
 

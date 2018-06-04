@@ -8,4 +8,22 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="invia_status">Invia Status</string>
+    <string name="cognome">Cognome:</string>
+    <string name="cap">CAP:</string>
+    <string name="via">Via:</string>
+    <string name="chiudi_scheda">Chiudi scheda</string>
+    <string name="data_di_nascita">Data di Nascita:</string>
+    <string name="numero">Numero:</string>
+    <string name="citt">Città:</string>
+    <string name="descrizione_chiamata">Descrizione chiamata:</string>
+    <string name="operatore">Operatore:</string>
+    <string name="nome">Nome:</string>
+    <string name="base">Base</string>
+    <string name="codice">Codice:</string>
+    <string name="id">ID</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="login">Login</string>
+    <string name="todo">TODO</string>
 </resources>
